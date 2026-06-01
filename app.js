@@ -54,3 +54,4 @@ function displayWeather(data) {
 }
 
 // BUG: fetchWeather() is never called on page load — page starts blank
+fetchWeather();
