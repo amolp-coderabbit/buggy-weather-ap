@@ -11,14 +11,14 @@ var weatherData = {};  // BUG: using var instead of const/let, global state
 
 // Update clock every second
 function updateClock() {
-  // BUG: no timezone specified — shows user's local time, not SF time
   const now = new Date();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-
-  // BUG: missing leading zero for single-digit values
-  document.getElementById("clock").innerText = hours + ":" + minutes + ":" + seconds;
+  const timeStr = now.toLocaleTimeString("en-US", {
+    timeZone: "America/Los_Angeles",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  document.getElementById("clock").innerText = timeStr;
 }
 
 setInterval(updateClock, 1000);
@@ -54,3 +54,4 @@ function displayWeather(data) {
 }
 
 // BUG: fetchWeather() is never called on page load — page starts blank
+fetchWeather();
